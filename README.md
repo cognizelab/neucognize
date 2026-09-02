@@ -58,6 +58,15 @@ python -m pip install -r requirements.txt
 
 The required packages are NumPy, pandas, Matplotlib, SciPy, and scikit-learn. Installation normally takes less than 5 minutes under standard network conditions.
 
+## System Requirements
+
+The code has been tested with the following environment:
+
+- Operating system: Windows 11 (64-bit)
+- Python: 3.10.9
+- Python dependencies: versions listed in `requirements.txt`
+- Hardware: standard desktop or laptop; no GPU or other specialised hardware is required
+
 ## Figure Reproduction
 
 Run the following commands from the repository root:
