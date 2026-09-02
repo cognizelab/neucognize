@@ -12,9 +12,11 @@ from matplotlib.colors import LinearSegmentedColormap
 
 
 HERE = Path(__file__).resolve().parent
-PROJECT_ROOT = HERE.parents[1]
-DEFAULT_DATA = PROJECT_ROOT / "code" / "data" / "fig4d_cneuromod_plot_points.csv"
-DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "figures" / "fig4d"
+REPO_ROOT = HERE.parents[1]
+DEFAULT_DATA = (
+    REPO_ROOT / "Figure_codes" / "Figure_data" / "fig4d_cneuromod_plot_points.csv"
+)
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "outputs" / "Figure4D"
 OUTPUT_NAME = "fig4d_generalisability_cneuromod.png"
 
 CATEGORY_ORDER = [

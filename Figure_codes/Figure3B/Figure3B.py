@@ -13,9 +13,11 @@ import pandas as pd
 
 
 HERE = Path(__file__).resolve().parent
-PROJECT_ROOT = HERE.parents[1]
-DEFAULT_DATA = PROJECT_ROOT / "code" / "data" / "fig3b_factor_correlations.csv"
-DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "figures" / "fig3b"
+REPO_ROOT = HERE.parents[1]
+DEFAULT_DATA = (
+    REPO_ROOT / "Figure_codes" / "Figure_data" / "fig3b_factor_correlations.csv"
+)
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "outputs" / "Figure3B"
 DEFAULT_TOP_K = 10
 
 EXPECTED_COLUMNS = [

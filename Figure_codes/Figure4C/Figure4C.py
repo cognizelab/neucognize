@@ -12,9 +12,11 @@ from matplotlib.colors import LinearSegmentedColormap
 
 
 HERE = Path(__file__).resolve().parent
-PROJECT_ROOT = HERE.parents[1]
-DEFAULT_DATA = PROJECT_ROOT / "code" / "data" / "fig4c_things_plot_points.csv"
-DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "figures" / "fig4c"
+REPO_ROOT = HERE.parents[1]
+DEFAULT_DATA = (
+    REPO_ROOT / "Figure_codes" / "Figure_data" / "fig4c_things_plot_points.csv"
+)
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "outputs" / "Figure4C"
 OUTPUT_NAME = "fig4c_generalisability_things.png"
 
 CATEGORY_ORDER = [
