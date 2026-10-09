@@ -82,7 +82,6 @@
     .resource p { color: var(--muted); font-size: .95rem; }
     .resource a { font-weight: 680; }
     pre { white-space: pre; overflow-x: auto; margin: 0; padding: 21px; background: #182d39; color: #edf4f4; font-size: .83rem; border-radius: 9px; }
-    .citation-note { color: var(--muted); font-size: .9rem; }
     footer { border-top: 1px solid var(--line); color: var(--muted); margin-top: 72px; padding: 24px 0 40px; font-size: .87rem; }
     @media (max-width: 850px) { .cards { grid-template-columns: 1fr; } .media-layout, .resources { grid-template-columns: 1fr; } .metrics { grid-template-columns: repeat(2,minmax(0,1fr)); } .hero-inner { padding: 53px 0 57px; } }
     @media (max-width: 550px) { .wrap { width: min(100% - 30px, 1120px); } .topbar-inner { align-items: flex-start; padding: 17px 0; flex-direction: column; gap: 9px; } .nav { gap: 14px; font-size: .82rem; } .metric { padding: 16px; } section { padding-top: 49px; } .viewer iframe { min-height: 500px; height: 68vh; } }
@@ -106,11 +105,11 @@
   <main id="main">
     <div class="hero" id="top">
       <div class="wrap hero-inner">
-        <div class="eyebrow">Neuroscience · Object vision · bioRxiv preprint (2026)</div>
+        <div class="eyebrow">Object vision · 7 T fMRI · 2026</div>
         <h1>Two dominant axes structure high-dimensional object representations in the human ventral temporal cortex</h1>
         <p class="authors">Yun Wang · Kaixiang Zhuang · Xinyu Liang · Jianfeng Feng · Martin Hebart · Deniz Vatansever</p>
         <p class="affil">Fudan University &amp; Center for Mind, Brain and Behavior (Marburg, Giessen and Darmstadt)</p>
-        <p class="hero-summary">Object representations in ventral temporal cortex are high-dimensional, yet their large-scale organisation is shaped by two interpretable latent axes. Together, these axes form a continuous triangular geometry spanning biological salience, object context and physical properties.</p>
+        <p class="hero-summary">Two dominant axes organise high-dimensional object representations in human ventral temporal cortex, forming a continuous triangular geometry.</p>
         <div class="links">
           <a class="action primary" href="https://www.biorxiv.org/content/10.64898/2026.09.09.749976v1" target="_blank" rel="noopener noreferrer">Read the preprint ↗</a>
           <a class="action" href="#explore">Explore the geometry ↓</a>
@@ -129,7 +128,7 @@
     <section id="overview" class="wrap">
       <div class="section-tag">The study</div>
       <h2>From neural responses to object-space geometry</h2>
-      <p class="intro">Instead of beginning with predefined semantic categories, the study estimated latent dimensions directly from patterns of 7 T fMRI activity in ventral temporal cortex. A cross-validated factor-analytic model revealed a high-dimensional representation, but its leading two dimensions captured over half of the explainable variance. The resulting geometry was continuous rather than partitioned into sharply separated object classes.</p>
+      <p class="intro">Factor analysis of 7 T fMRI responses revealed a high-dimensional object representation dominated by two latent axes. Together, they accounted for over half of the explainable variance and organised object concepts along continuous gradients.</p>
       <div class="method"><strong>Design and analysis.</strong> Twenty participants completed repeated object-recognition sessions. The stimulus collection spanned 1,854 THINGS concepts; the main factor analysis used 960 WordNet-labelled concepts organised into 14 high-level categories. A 50-factor solution was selected by cross-validation, with the two dominant axes used to characterise large-scale geometry.</div>
     </section>
 
@@ -157,20 +156,19 @@
     </section>
 
     <section id="visuals" class="wrap">
-      <div class="section-tag">Project media</div>
+      <div class="section-tag">Visualisations</div>
       <h2>Visualising the representational continuum</h2>
-      <p class="intro">The resources below come from the existing project website. They illustrate the proposed object space and are supplementary project media, not substitutes for the updated, peer-reviewed figure set.</p>
-      <div class="media-layout">
+            <div class="media-layout">
         <figure class="media-panel">
           <img src="./image2.png" alt="Schematic showing animal and body-related objects towards the left, food and plant-related objects towards the upper right, and furniture and vehicle-related objects towards the lower right." loading="lazy">
-          <figcaption class="media-caption">Illustrative schematic of category positions in the two-dimensional object space (existing website asset).</figcaption>
+          <figcaption class="media-caption">Schematic of object-category positions in the two-dimensional factor space.</figcaption>
         </figure>
         <div class="media-panel">
           <video controls preload="metadata" playsinline aria-label="Video demonstrating the continuum of object representations">
             <source src="./video.mp4" type="video/mp4">
             Your browser does not support HTML5 video. <a href="./video.mp4">Open the video file</a>.
           </video>
-          <p class="media-caption">Continuum video from the original project website.</p>
+          <p class="media-caption">Object-representation continuum.</p>
         </div>
       </div>
     </section>
@@ -178,11 +176,10 @@
     <section id="explore" class="wrap">
       <div class="section-tag">Interactive visualisation</div>
       <h2>Explore the object geometry</h2>
-      <p class="intro">The original <code>viz.html</code> visualisation is now embedded below. It is an exploratory companion to the study and may differ from the final figure presentation in the 2026 preprint. For interpretation and precise quantitative results, refer to the paper.</p>
+      <p class="intro">Interactively explore the two-dimensional object space.</p>
       <div class="viewer">
         <iframe src="./viz.html" title="Interactive visualisation of the object representation geometry" loading="lazy" allowfullscreen></iframe>
         <div class="viewer-foot">
-          <span>The interactive file is loaded on demand as you scroll to this section.</span>
           <a href="./viz.html" target="_blank" rel="noopener noreferrer">Open full-page interactive visualisation ↗</a>
         </div>
       </div>
@@ -199,7 +196,7 @@
         </div>
         <div class="resource">
           <h3>Analysis and figure code</h3>
-          <p>Factor-analysis implementations, figure-reproduction scripts and a synthetic-data demo are available in the public GitHub repository. The repository does not contain raw participant-level fMRI data.</p>
+          <p>Factor analysis, figure reproduction and demonstration code.</p>
           <a href="https://github.com/cognizelab/neucognize" target="_blank" rel="noopener noreferrer">github.com/cognizelab/neucognize ↗</a>
         </div>
       </div>
@@ -215,11 +212,10 @@
   doi     = {10.64898/2026.09.09.749976},
   url     = {https://www.biorxiv.org/content/10.64898/2026.09.09.749976v1}
 }</pre>
-      <p class="citation-note" style="margin-top:12px">This work is available as a preprint and has not been certified by peer review.</p>
     </section>
   </main>
   <footer>
-    <div class="wrap">CognizeLab · Research project website · <a href="https://github.com/cognizelab/neucognize" target="_blank" rel="noopener noreferrer">Repository</a> · <a href="https://www.biorxiv.org/content/10.64898/2026.09.09.749976v1" target="_blank" rel="noopener noreferrer">bioRxiv preprint</a></div>
+    <div class="wrap">CognizeLab · <a href="https://github.com/cognizelab/neucognize" target="_blank" rel="noopener noreferrer">Repository</a> · <a href="https://www.biorxiv.org/content/10.64898/2026.09.09.749976v1" target="_blank" rel="noopener noreferrer">bioRxiv preprint</a></div>
   </footer>
 </body>
 </html>
