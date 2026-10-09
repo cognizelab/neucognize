@@ -1,115 +1,225 @@
-<!-- Trigger GitHub Pages redeployment -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research Project: Interactive Visualizations and Video Tutorial</title>
-    <style>
-        body {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: flex-start;
-            margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
-        .container {
-            margin: 20px;
-            border: 1px solid #ccc;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            border-radius: 8px;
-        }
-        iframe, video {
-            max-width: 100%;
-        }
-        h1, h2 {
-            text-align: center;
-            color: #333;
-        }
-        .links {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .links a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #1a73e8;
-        }
-        .citation {
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-            padding: 10px;
-            font-family: monospace;
-            white-space: pre-wrap;
-            overflow-x: auto;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A research project on the dominant latent axes of object representation in human ventral temporal cortex, with interactive visualisation, video and code.">
+  <meta name="citation_title" content="Two dominant axes structure high-dimensional object representations in the human ventral temporal cortex">
+  <meta name="citation_author" content="Wang, Yun">
+  <meta name="citation_author" content="Zhuang, Kaixiang">
+  <meta name="citation_author" content="Liang, Xinyu">
+  <meta name="citation_author" content="Feng, Jianfeng">
+  <meta name="citation_author" content="Hebart, Martin">
+  <meta name="citation_author" content="Vatansever, Deniz">
+  <meta name="citation_doi" content="10.64898/2026.09.09.749976">
+  <meta name="citation_publication_date" content="2026">
+  <link rel="canonical" href="https://cognizelab.github.io/neucognize/">
+  <title>Two Dominant Axes of Object Representation | CognizeLab</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18303c;
+      --muted: #566875;
+      --accent: #146b73;
+      --accent-dark: #0f4855;
+      --line: #dce5e7;
+      --paper: #fff;
+      --canvas: #f5f8f8;
+      --warm: #d8aa7a;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; line-height: 1.7; background: var(--canvas); color: var(--ink); }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:hover { color: var(--accent-dark); }
+    a:focus-visible { outline: 3px solid #ecae63; outline-offset: 4px; }
+    .skip { position: absolute; top: -60px; left: 12px; background: #fff; padding: 7px 12px; z-index: 4; }
+    .skip:focus { top: 12px; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar { background: #ffffff; border-bottom: 1px solid var(--line); }
+    .topbar-inner { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font-size: .88rem; letter-spacing: .11em; font-weight: 750; color: var(--ink); text-decoration: none; }
+    .nav { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; font-size: .9rem; }
+    .nav a { color: var(--muted); text-decoration: none; }
+    .nav a:hover { color: var(--accent); }
+    .hero { background: linear-gradient(122deg, #102a39 0%, #174656 62%, #246a70 100%); color: #fff; }
+    .hero-inner { padding: 76px 0 70px; max-width: 980px; }
+    .eyebrow { color: #a9d9d5; font-size: .78rem; text-transform: uppercase; letter-spacing: .17em; font-weight: 750; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font: 600 clamp(2.1rem, 4.6vw, 3.55rem)/1.13 Georgia, "Times New Roman", serif; max-width: 1000px; margin: 17px 0 23px; letter-spacing: -.025em; }
+    .authors { color: #ecf5f5; font-size: 1.05rem; max-width: 830px; }
+    .affil { color: #c3d8dd; font-size: .92rem; margin-top: -5px; }
+    .hero-summary { max-width: 790px; color: #e4f1f2; font-size: 1.13rem; margin-top: 26px; }
+    .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .action { display: inline-flex; align-items: center; justify-content: center; border: 1px solid #b7d9d7; color: #fff; border-radius: 7px; padding: 10px 17px; text-decoration: none; font-weight: 650; transition: background .15s; }
+    .action:hover { color: #fff; background: rgba(255,255,255,.12); }
+    .action.primary { background: #fff; border-color: #fff; color: #153f4c; }
+    .action.primary:hover { color: #153f4c; background: #e9f2f2; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: -1px auto 0; }
+    .metric { background: #fff; padding: 20px 22px; }
+    .metric strong { display: block; font: 600 1.8rem/1.25 Georgia, serif; color: var(--accent-dark); }
+    .metric span { font-size: .88rem; color: var(--muted); }
+    section { padding: 65px 0 8px; scroll-margin-top: 24px; }
+    .section-tag { text-transform: uppercase; color: var(--accent); font-size: .76rem; letter-spacing: .14em; font-weight: 750; margin-bottom: 12px; }
+    h2 { font: 600 clamp(1.7rem,3.2vw,2.25rem)/1.2 Georgia,serif; letter-spacing: -.015em; }
+    h3 { font-size: 1.05rem; line-height: 1.35; margin-bottom: 10px; }
+    .intro { max-width: 900px; font-size: 1.08rem; color: #3d5160; }
+    .cards { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin-top: 27px; }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 24px; }
+    .card p { color: var(--muted); margin-bottom: 0; font-size: .96rem; }
+    .card .number { display: block; color: var(--accent); letter-spacing: .1em; font-size: .77rem; font-weight: 750; margin-bottom: 15px; }
+    .method { background: #e8f0f0; border-left: 3px solid var(--accent); padding: 22px 26px; border-radius: 0 9px 9px 0; color: #314b57; margin-top: 26px; }
+    .media-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+    .media-panel { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 19px; min-width: 0; }
+    .media-panel img { display: block; width: 100%; max-height: 410px; object-fit: contain; background: #fff; }
+    .media-panel video { width: 100%; display: block; background: #172e39; border-radius: 4px; }
+    .media-caption { font-size: .87rem; color: var(--muted); margin: 12px 0 0; }
+    .viewer { background: #fff; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-top: 21px; }
+    .viewer iframe { display: block; width: 100%; min-height: 640px; height: 70vh; max-height: 780px; border: 0; background: #fff; }
+    .viewer-foot { border-top: 1px solid var(--line); padding: 13px 20px; color: var(--muted); font-size: .91rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .resources { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+    .resource { border: 1px solid var(--line); border-radius: 10px; background: #fff; padding: 24px; }
+    .resource p { color: var(--muted); font-size: .95rem; }
+    .resource a { font-weight: 680; }
+    pre { white-space: pre; overflow-x: auto; margin: 0; padding: 21px; background: #182d39; color: #edf4f4; font-size: .83rem; border-radius: 9px; }
+    .citation-note { color: var(--muted); font-size: .9rem; }
+    footer { border-top: 1px solid var(--line); color: var(--muted); margin-top: 72px; padding: 24px 0 40px; font-size: .87rem; }
+    @media (max-width: 850px) { .cards { grid-template-columns: 1fr; } .media-layout, .resources { grid-template-columns: 1fr; } .metrics { grid-template-columns: repeat(2,minmax(0,1fr)); } .hero-inner { padding: 53px 0 57px; } }
+    @media (max-width: 550px) { .wrap { width: min(100% - 30px, 1120px); } .topbar-inner { align-items: flex-start; padding: 17px 0; flex-direction: column; gap: 9px; } .nav { gap: 14px; font-size: .82rem; } .metric { padding: 16px; } section { padding-top: 49px; } .viewer iframe { min-height: 500px; height: 68vh; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .action { transition: none; } }
+  </style>
 </head>
 <body>
-
-    <!-- Page Title -->
-    <header>
-        <h1>Research Project: Interactive Visualizations and Video Tutorial</h1>
-        <p style="text-align:center; color: #555;">A comprehensive introduction to our study and resources.</p>
-    </header>
-
-    <!-- Container for the HTML file -->
-    <div class="container">
-        <h2>Two-dimensional Geometry of Objects</h2>
-        <!-- <iframe 
-            src="viz.html" 
-            width="800" 
-            height="600" 
-            frameborder="0">
-        </iframe> -->
-        <div style="display: flex; justify-content: space-around; margin-top: 20px;">
-            <img src="image1.png" alt="Related Visualization 1" width="457" height="457">
-            <img src="image2.png" alt="Related Visualization 2" width="398" height="457">
+  <a class="skip" href="#main">Skip to main content</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="CognizeLab project homepage">COGNIZELAB / RESEARCH</a>
+      <nav class="nav" aria-label="Site navigation">
+        <a href="#overview">Overview</a>
+        <a href="#findings">Findings</a>
+        <a href="#visuals">Visuals</a>
+        <a href="#explore">Interactive map</a>
+        <a href="#resources">Paper &amp; code</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="hero" id="top">
+      <div class="wrap hero-inner">
+        <div class="eyebrow">Neuroscience · Object vision · bioRxiv preprint (2026)</div>
+        <h1>Two dominant axes structure high-dimensional object representations in the human ventral temporal cortex</h1>
+        <p class="authors">Yun Wang · Kaixiang Zhuang · Xinyu Liang · Jianfeng Feng · Martin Hebart · Deniz Vatansever</p>
+        <p class="affil">Fudan University &amp; Center for Mind, Brain and Behavior (Marburg, Giessen and Darmstadt)</p>
+        <p class="hero-summary">Object representations in ventral temporal cortex are high-dimensional, yet their large-scale organisation is shaped by two interpretable latent axes. Together, these axes form a continuous triangular geometry spanning biological salience, object context and physical properties.</p>
+        <div class="links">
+          <a class="action primary" href="https://www.biorxiv.org/content/10.64898/2026.09.09.749976v1" target="_blank" rel="noopener noreferrer">Read the preprint ↗</a>
+          <a class="action" href="#explore">Explore the geometry ↓</a>
+          <a class="action" href="https://github.com/cognizelab/neucognize" target="_blank" rel="noopener noreferrer">Source code ↗</a>
         </div>
+      </div>
     </div>
 
-    <!-- Container for the MP4 video -->
-    <div class="container">
-        <h2>Continuum Video</h2>
-        <video controls width="800">
-            <source src="video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    <div class="wrap metrics" aria-label="Study at a glance">
+      <div class="metric"><strong>7 T</strong><span>Ultra-high-field fMRI</span></div>
+      <div class="metric"><strong>20</strong><span>Participants</span></div>
+      <div class="metric"><strong>1,854</strong><span>THINGS object concepts sampled</span></div>
+      <div class="metric"><strong>2</strong><span>Dominant representational axes</span></div>
     </div>
 
-    <!-- Links to Paper and Code -->
-    <div class="container">
-        <h2>Additional Resources</h2>
-        <p class="links">
-            <a href="https://example.com/research-paper" target="_blank">Read the Research Paper</a>
-            <a href="https://github.com/cognizelab/object-geometry/tree/code" target="_blank">Access the Code Repository</a>
-            <a href="viz.html" target="_blank">Interactive Visualization</a>
-        </p>
-    </div>
+    <section id="overview" class="wrap">
+      <div class="section-tag">The study</div>
+      <h2>From neural responses to object-space geometry</h2>
+      <p class="intro">Instead of beginning with predefined semantic categories, the study estimated latent dimensions directly from patterns of 7 T fMRI activity in ventral temporal cortex. A cross-validated factor-analytic model revealed a high-dimensional representation, but its leading two dimensions captured over half of the explainable variance. The resulting geometry was continuous rather than partitioned into sharply separated object classes.</p>
+      <div class="method"><strong>Design and analysis.</strong> Twenty participants completed repeated object-recognition sessions. The stimulus collection spanned 1,854 THINGS concepts; the main factor analysis used 960 WordNet-labelled concepts organised into 14 high-level categories. A 50-factor solution was selected by cross-validation, with the two dominant axes used to characterise large-scale geometry.</div>
+    </section>
 
-    <!-- LaTeX Citation Block -->
-    <div class="container">
-        <h2>How to Cite This Work</h2>
-        <div class="citation">
-@article{example2024,
-  title={Interactive Visualizations and Video Tutorial},
-  author={Doe, John and Smith, Jane},
-  journal={Journal of Innovative Research},
-  year={2024},
-  volume={15},
-  number={3},
-  pages={123--135},
-  doi={10.1234/example.doi},
-  url={https://example.com/research-paper}
-}
+    <section id="findings" class="wrap">
+      <div class="section-tag">Main findings</div>
+      <h2>Two axes, three poles and a cortical gradient</h2>
+      <div class="cards">
+        <article class="card">
+          <span class="number">01 / FACTOR 1</span>
+          <h3>Biological salience</h3>
+          <p>One axis tracks an animacy-related continuum, extending beyond animals to inanimate objects with human-like features. It is not simply a binary animate-versus-inanimate label.</p>
+        </article>
+        <article class="card">
+          <span class="number">02 / FACTOR 2</span>
+          <h3>Scene context and action affordance</h3>
+          <p>A second axis brings together real-world scale, scene associations and manipulability. Furniture and vehicles occupy one extreme, while smaller, more readily handled objects tend towards the other.</p>
+        </article>
+        <article class="card">
+          <span class="number">03 / GEOMETRY</span>
+          <h3>Animal · furniture · food</h3>
+          <p>Animal-, furniture- and food-related concepts anchor a triangular object space. Other categories occupy overlapping regions along its edges and interior.</p>
+        </article>
+      </div>
+      <div class="method"><strong>Neural implementation and replication.</strong> The factors map onto a gradual lateral-to-medial cortical organisation, from regions overlapping face-selective cortex towards scene-selective cortex. The broad representational geometry is stable across participants and generalises to independent THINGS-fMRI and CNeuroMod-THINGS datasets.</div>
+    </section>
+
+    <section id="visuals" class="wrap">
+      <div class="section-tag">Project media</div>
+      <h2>Visualising the representational continuum</h2>
+      <p class="intro">The resources below come from the existing project website. They illustrate the proposed object space and are supplementary project media, not substitutes for the updated, peer-reviewed figure set.</p>
+      <div class="media-layout">
+        <figure class="media-panel">
+          <img src="./image2.png" alt="Schematic showing animal and body-related objects towards the left, food and plant-related objects towards the upper right, and furniture and vehicle-related objects towards the lower right." loading="lazy">
+          <figcaption class="media-caption">Illustrative schematic of category positions in the two-dimensional object space (existing website asset).</figcaption>
+        </figure>
+        <div class="media-panel">
+          <video controls preload="metadata" playsinline aria-label="Video demonstrating the continuum of object representations">
+            <source src="./video.mp4" type="video/mp4">
+            Your browser does not support HTML5 video. <a href="./video.mp4">Open the video file</a>.
+          </video>
+          <p class="media-caption">Continuum video from the original project website.</p>
         </div>
-    </div>
+      </div>
+    </section>
 
+    <section id="explore" class="wrap">
+      <div class="section-tag">Interactive visualisation</div>
+      <h2>Explore the object geometry</h2>
+      <p class="intro">The original <code>viz.html</code> visualisation is now embedded below. It is an exploratory companion to the study and may differ from the final figure presentation in the 2026 preprint. For interpretation and precise quantitative results, refer to the paper.</p>
+      <div class="viewer">
+        <iframe src="./viz.html" title="Interactive visualisation of the object representation geometry" loading="lazy" allowfullscreen></iframe>
+        <div class="viewer-foot">
+          <span>The interactive file is loaded on demand as you scroll to this section.</span>
+          <a href="./viz.html" target="_blank" rel="noopener noreferrer">Open full-page interactive visualisation ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources" class="wrap">
+      <div class="section-tag">Open resources</div>
+      <h2>Paper, code and citation</h2>
+      <div class="resources">
+        <div class="resource">
+          <h3>Preprint</h3>
+          <p><em>Two dominant axes structure high-dimensional object representations in the human ventral temporal cortex.</em> Wang et al. (2026). bioRxiv, version 1.</p>
+          <a href="https://doi.org/10.64898/2026.09.09.749976" target="_blank" rel="noopener noreferrer">DOI: 10.64898/2026.09.09.749976 ↗</a>
+        </div>
+        <div class="resource">
+          <h3>Analysis and figure code</h3>
+          <p>Factor-analysis implementations, figure-reproduction scripts and a synthetic-data demo are available in the public GitHub repository. The repository does not contain raw participant-level fMRI data.</p>
+          <a href="https://github.com/cognizelab/neucognize" target="_blank" rel="noopener noreferrer">github.com/cognizelab/neucognize ↗</a>
+        </div>
+      </div>
+      <h3 style="margin-top:30px">BibTeX</h3>
+      <pre aria-label="BibTeX citation">@article{wang2026twodominantaxes,
+  title   = {Two dominant axes structure high-dimensional object
+             representations in the human ventral temporal cortex},
+  author  = {Wang, Yun and Zhuang, Kaixiang and Liang, Xinyu
+             and Feng, Jianfeng and Hebart, Martin
+             and Vatansever, Deniz},
+  journal = {bioRxiv},
+  year    = {2026},
+  doi     = {10.64898/2026.09.09.749976},
+  url     = {https://www.biorxiv.org/content/10.64898/2026.09.09.749976v1}
+}</pre>
+      <p class="citation-note" style="margin-top:12px">This work is available as a preprint and has not been certified by peer review.</p>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">CognizeLab · Research project website · <a href="https://github.com/cognizelab/neucognize" target="_blank" rel="noopener noreferrer">Repository</a> · <a href="https://www.biorxiv.org/content/10.64898/2026.09.09.749976v1" target="_blank" rel="noopener noreferrer">bioRxiv preprint</a></div>
+  </footer>
 </body>
 </html>
-
